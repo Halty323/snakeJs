@@ -1,8 +1,8 @@
 const xsize = 40
 const ysize = 40
 
-const screenSizeX = 15
-const screenSizeY = 15
+const screenSizeX = 20
+const screenSizeY = 20
 const interval = 200
 const squareIndex = 3
 
@@ -29,13 +29,14 @@ window.addEventListener('load', async () =>{
         drawSnake(snake, ctx)
         checkPos(snake, canvas)
         drawFruit(fruit, ctx, "red")
+        drawCube(0, 0, ctx, "black")
         await sleep(interval)
     }
     endGame(canvas)
 })
 
 function generateFruit(snake) {
-    snake.push([1, 1])
+    snake.push([0, 0])
     fruit = [getRandomInt(screenSizeX-1)+1, getRandomInt(screenSizeY-1)+1]
     for(let i = 0; i < snake.length; i++) {
         if (fruit[0] == snake[i][0] && fruit[1] == snake[i][1]) generateFruit(snake)
@@ -109,9 +110,9 @@ function moveSnake(snake) {
 function drawSnake(snake, ctx) {
     for (let x = 0; x < snake.length; x++) {
         if (x == 0) {
-            drawCubeSnake(snake[x][0], snake[x][1], ctx, "rgb(0, 0, 100)")
+            drawCubeSnake(snake[x][0], snake[x][1], ctx, "rgb(0, 0, 255)")
         } else {
-            drawCubeSnake(snake[x][0], snake[x][1], ctx, "rgb(" + x*2 + ", 0, 50)")
+            drawCubeSnake(snake[x][0], snake[x][1], ctx, "rgb(" + x*3 + ", 0, 150)")
         }
     }
 }
